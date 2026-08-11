@@ -1,0 +1,145 @@
+{
+  "manifest_version": 3,
+  "name": "Herald",
+  "version": "0.2.0",
+  "description": "Tarayicida izlediklerini ve dinlediklerini Discord profilinde Rich Presence olarak gosterir. Veri sadece bilgisayarinda kalir.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://music.youtube.com/*",
+        "*://*.netflix.com/*",
+        "*://*.primevideo.com/*",
+        "*://*.amazon.com/*",
+        "*://*.amazon.com.tr/*",
+        "*://play.max.com/*",
+        "*://*.max.com/*",
+        "*://*.disneyplus.com/*",
+        "*://open.spotify.com/*",
+        "*://*.twitch.tv/*",
+        "*://play.hbomax.com/*",
+        "*://*.hbomax.com/*"
+      ],
+      "js": [
+        "main-world.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://www.youtube.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/youtube.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://music.youtube.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/youtube-music.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.netflix.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/netflix.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.primevideo.com/*",
+        "*://*.amazon.com/*",
+        "*://*.amazon.com.tr/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/prime.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://play.max.com/*",
+        "*://*.max.com/*",
+        "*://play.hbomax.com/*",
+        "*://*.hbomax.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/max.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.disneyplus.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/disney.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://open.spotify.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/spotify.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.twitch.tv/*"
+      ],
+      "js": [
+        "shared.js",
+        "adapters/twitch.js",
+        "core.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Herald",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

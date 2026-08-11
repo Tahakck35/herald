@@ -1,0 +1,32 @@
+{
+  "name": "herald-companion",
+  "version": "0.3.0",
+  "description": "Herald companion app - bridges the browser extension to Discord Rich Presence",
+  "main": "index.js",
+  "bin": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "copy-traybin": "node tools/copy-traybin.js",
+    "no-console": "node tools/patch-subsystem.js",
+    "build": "pkg . --targets node22-win-x64 --output dist/Herald.exe && npm run no-console && npm run copy-traybin"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "systray2": "^2.0.3"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.1.1",
+    "rcedit": "^4.0.1"
+  },
+  "pkg": {
+    "scripts": [
+      "tray.js"
+    ],
+    "assets": [
+      "assets/**/*",
+      "node_modules/systray2/traybin/**/*"
+    ],
+    "outputPath": "dist"
+  }
+}
